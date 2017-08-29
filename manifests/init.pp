@@ -58,9 +58,9 @@ class postfix(
 		Enum['yes','no'] $smtpd_helo_required = $::postfix::params::smtpd_helo_required,
 		Enum['yes','no'] $disable_vrfy_command = $::postfix::params::disable_vrfy_command,
 		Enum['yes','no'] $address_verify_negative_cache = $::postfix::params::address_verify_negative_cache,
-		$lists = undef,
-		$aliases = undef,
-		$maps = undef
+		Optional[Array] $lists = undef,
+		Optional[Array] $aliases = undef,
+		Optional[Array] $maps = undef
 ) inherits ::postfix::params {
 
 	if $::osfamily == 'Debian' {
