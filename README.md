@@ -16,12 +16,7 @@
 
 ## Description
 
-This puppet-module fully manages postfix on debian-based Linux Distributions. Even if it was tested with Debian Stretch and Puppet 4.10.6, this module might work with other versions too.
-
-You can give more descriptive information in a second paragraph. This paragraph
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?" If your module has a range of functionality (installation, configuration,
-management, etc.), this is the time to mention it.
+This puppet-module fully manages postfix on debian-based Linux Distributions. This module was tested with Debian Stretch, Ubuntu Trusty, Puppet 4.10.6 and Puppet 5.
 
 ## Setup
 
@@ -64,9 +59,10 @@ se.
 
 ## Limitations
 
-This module is tested against open source Puppet4 on:
+This module is tested against open source Puppet4 and Puppet5 on:
 
-- Debian 9
+- Debian Stretch
+- Ubuntu Trusty
 
 ## Development
 
