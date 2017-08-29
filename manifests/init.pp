@@ -25,7 +25,9 @@ class postfix(
   $inet_interfaces = $::postfix::params::inet_interfaces,
   $readme_directory = $::postfix::params::readme_directory,
   $smtpd_tls_key_file = $::postfix::params::smtpd_tls_key_file,
+  # lint:ignore:names_containing_uppcercase
   $smtpd_CAfile = $::postfix::params::smtpd_CAfile,
+  # lint:endignore
   $smtpd_tls_cert_file = $::postfix::params::smtpd_tls_cert_file,
   Optional[Enum['yes','no']] $smtpd_use_tls = $::postfix::params::smtpd_use_tls,
   Optional[Enum['none','may','encrypt']] $smtpd_tls_security_level = $::postfix::params::smtpd_tls_security_level,
