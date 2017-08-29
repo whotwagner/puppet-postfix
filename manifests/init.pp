@@ -57,7 +57,10 @@ class postfix(
 		$relay_host = $::postfix::params::relay_host,
 		Enum['yes','no'] $smtpd_helo_required = $::postfix::params::smtpd_helo_required,
 		Enum['yes','no'] $disable_vrfy_command = $::postfix::params::disable_vrfy_command,
-		Enum['yes','no'] $address_verify_negative_cache = $::postfix::params::address_verify_negative_cache
+		Enum['yes','no'] $address_verify_negative_cache = $::postfix::params::address_verify_negative_cache,
+		$lists = undef,
+		$aliases = undef,
+		$maps = undef
 ) inherits ::postfix::params {
 
 	if $::osfamily == 'Debian' {
@@ -98,7 +101,15 @@ class postfix(
 		package{'postfix-policyd-spf-perl': ensure => installed }
 	}
 
-	include postfix::lists
+	# include postfix::lists
+	if $lists {
+		$lists.each| String $file, Array $maptuple|{
+
+		$maptuple.each| String $entry|{
+				ensure_resource('postfix::list',"$file:$entry",{file => $file, value => $entry, require => Package['postfix']})
+		}
+	}
+	}
 
 	file { "$config_directory/main.cf":
 		ensure => present,
@@ -123,9 +134,29 @@ class postfix(
 	}
 
 
+	if $aliases {
+	$aliases.each| String $file, Array $maptuple|{
 
-	include postfix::aliases
-	include postfix::maps
+		$maptuple.map| $entry|{
+			$entry.each| String $key, String $value |{
+				ensure_resource('postfix::alias',"$file:$key:$value",{ file=> $file, key => $key, value => $value, require => Package['postfix'] })
+			}
+		}
+	}
+
+	}
+
+	if $maps {
+		$maps.each| String $file, Array $maptuple|{
+
+		$maptuple.map| $entry|{
+			$entry.each| String $key, String $value |{
+				ensure_resource('postfix::map',"$file:$key:$value",{ file=> $file, key => $key, value => $value, require => Package['postfix'] })
+			}
+		}
+	}
+
+	}
        
 	service{'postfix': 
 		ensure => running, 

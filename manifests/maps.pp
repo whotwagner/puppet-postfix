@@ -1,15 +1,3 @@
-class postfix::maps
-{
-	hiera_hash('postfixmaps').each| String $file, Array $maptuple|{
-
-		$maptuple.map| $entry|{
-			$entry.each| String $key, String $value |{
-				ensure_resource('postfix::map',"$file:$key:$value",{ file=> $file, key => $key, value => $value, require => Package['postfix'] })
-			}
-		}
-	}
-}
-
 define postfix::map($file = undef, $key = undef, $value = undef)
 {
 	if $file != undef and $key != undef and $value != undef
