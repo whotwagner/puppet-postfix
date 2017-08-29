@@ -14,11 +14,11 @@ class postfix(
 		$delay_warning_time = $::postfix::params::delay_warning_time,
 		$bounce_queue_lifetime = $::postfix::params::bounce_queue_lifetime,
 		$maximal_queue_lifetime = $::postfix::params::maximal_queue_lifetime,
-		Array $smtpd_client_restrictions = $::postfix::params::smtpd_client_restrictions,
-		Array $smtpd_helo_restrictions = $::postfix::params::smtpd_helo_restrictions,
-		Array $smtpd_sender_restrictions = $::postfix::params::smtpd_sender_restrictions,
-		Array $smtpd_data_restrictions = $::postfix::params::smtpd_data_restrictions,
-		Array $smtpd_recipient_restrictions = $::postfix::params::smtpd_recipient_restrictions,
+		Optional[Array] $smtpd_client_restrictions = $::postfix::params::smtpd_client_restrictions,
+		Optional[Array] $smtpd_helo_restrictions = $::postfix::params::smtpd_helo_restrictions,
+		Optional[Array] $smtpd_sender_restrictions = $::postfix::params::smtpd_sender_restrictions,
+		Optional[Array] $smtpd_data_restrictions = $::postfix::params::smtpd_data_restrictions,
+		Optional[Array] $smtpd_recipient_restrictions = $::postfix::params::smtpd_recipient_restrictions,
 		$transport_maps = $::postfix::params::transport_maps,
 		$alias_maps = $::postfix::params::alias_maps,
 		$alias_database = $::postfix::params::alias_database,
@@ -57,7 +57,7 @@ class postfix(
 		$relay_host = $::postfix::params::relay_host,
 		Enum['yes','no'] $smtpd_helo_required = $::postfix::params::smtpd_helo_required,
 		Enum['yes','no'] $disable_vrfy_command = $::postfix::params::disable_vrfy_command,
-		Enum['yes','no'] $address_verify_negative_cache = $::postfix::params::ddress_verify_negative_cache
+		Enum['yes','no'] $address_verify_negative_cache = $::postfix::params::address_verify_negative_cache
 ) inherits ::postfix::params {
 
 	if $::osfamily == 'Debian' {
