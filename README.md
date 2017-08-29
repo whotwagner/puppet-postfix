@@ -14,9 +14,7 @@
 
 ## Description
 
-Start with a one- or two-sentence summary of what the module does and/or what
-problem it solves. This is your 30-second elevator pitch for your module.
-Consider including OS/Puppet version it works with.
+This puppet-module fully manages postfix on debian-based Linux Distributions. Even if it was tested with Debian Stretch and Puppet 4.10.6, this module might work with other versions too.
 
 You can give more descriptive information in a second paragraph. This paragraph
 should answer the questions: "What does this module *do*?" and "Why would I use
@@ -25,33 +23,29 @@ management, etc.), this is the time to mention it.
 
 ## Setup
 
-### What postfix affects **OPTIONAL**
+### What postfix affects
 
-If it's obvious what your module touches, you can skip this section. For
-example, folks can probably figure out that your mysql_instance module affects
-their MySQL instances.
+* postfix package.
+* postfix main.cf configuration file.
+* postfix master.cf configuration file.
+* postfix maps(files created with postmap)
+* postfix /etc/aliases
+* postfix service.
+* maybe postfix-policyd-spf-perl
 
-If there's more that they should know about, though, this is the place to mention:
+### Setup Requirements
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you might want to include an additional "Upgrading" section
-here.
+* Puppet >=  4.10.6
+* [Stdlib module](https://github.com/puppetlabs/puppetlabs-stdlib)
+* [Concat module](https://github.com/puppetlabs/puppetlabs-concat)
 
 ### Beginning with postfix
 
-The very basic steps needed for a user to get the module up and running. This
-can include setup steps, if necessary, or it can be an example of the most
-basic use of the module.
+To have Puppet install Postfix with the default parameters, declare the postfix class:
+
+```puppet
+    class { 'postfix': }
+```
 
 ## Usage
 
@@ -68,16 +62,15 @@ se.
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc. If there
-are Known Issues, you might want to include them under their own heading here.
+This module is tested against open source Puppet4 on:
+
+- Debian 9
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+Contribution is very welcome. Feel free to fork the project, make some changes and create pull requests. 
 
-## Release Notes/Contributors/Etc. **Optional**
+### Extending OS support
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You can also add any additional sections you feel
-are necessary or important to include here. Please use the `## ` header.
+I am working mainly with Debian and Ubuntu. I would love to see some pull requests with code for other Linux Distributions too.
+
