@@ -1,5 +1,7 @@
 # postfix
 
+[![Build Status](https://travis-ci.org/whotwagner/puppet-postfix.svg?branch=master)](https://travis-ci.org/whotwagner/puppet-postfix)
+
 #### Table of Contents
 
 1. [Description](#description)
