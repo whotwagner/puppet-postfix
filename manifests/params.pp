@@ -25,7 +25,7 @@ class postfix::params {
   $readme_directory = undef
   $smtpd_tls_cert_file = undef
   $smtpd_tls_key_file = undef
-  $smtpd_CAfile = undef
+  $smtpd_cafile = undef
   $smtpd_use_tls = undef
   $smtpd_tls_security_level = undef
   $smtpd_tls_auth_only = undef
