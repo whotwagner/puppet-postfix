@@ -44,11 +44,22 @@ To have Puppet install Postfix with the default parameters, declare the postfix 
     class { 'postfix': }
 ```
 
+When you declare this class with the default options, the module:
+
+- Installs the Postfix software package for your operating system.
+- Places the main.cf and master.cf files in your postfix-configuration-directory
+- Sets the hostname to localhost
+- Starts the Postfix service
+
 ## Usage
 
-This section is where you describe how to customize, configure, and do the
-fancy stuff with your module here. It's especially helpful if you include usage
-examples and code samples for doing things with your module.
+### Simple postfix configuration
+
+```puppet
+   class {'postfix':
+	   myhostname => 'mail.example.com'
+   }
+```
 
 ## Reference
 
