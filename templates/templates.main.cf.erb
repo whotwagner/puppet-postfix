@@ -201,8 +201,8 @@ milter_default_action = accept
 <% end -%>
 
 <% if @inet_interfaces -%>
-<% if @inet_interfaces =~ Array -%>
-inet_interfaces = <% @inet_interfaces.each do |inetif| -%><%= inetif -%>,<% end -%>
+<% if @inet_interfaces.is_a?(Array) -%>
+inet_interfaces = <%= @inet_interfaces.join(',') %>
 <% else %>
 inet_interfaces = <%= @inet_interfaces %>
 <% end -%>

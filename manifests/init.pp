@@ -22,7 +22,7 @@ class postfix(
   $transport_maps = $::postfix::params::transport_maps,
   $alias_maps = $::postfix::params::alias_maps,
   $alias_database = $::postfix::params::alias_database,
-  $inet_interfaces = $::postfix::params::inet_interfaces,
+  Optional[Variant[String,Array]] $inet_interfaces = $::postfix::params::inet_interfaces,
   $readme_directory = $::postfix::params::readme_directory,
   $smtpd_tls_key_file = $::postfix::params::smtpd_tls_key_file,
   $smtpd_cafile = $::postfix::params::smtpd_cafile,
