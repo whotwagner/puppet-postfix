@@ -3,7 +3,7 @@ class postfix::params {
   $tplmastercf = 'postfix/master.cf.erb'
   $myhostname = 'localhost'
   $mynetworks = ['127.0.0.0/8', '[::ffff:127.0.0.0]/104', '[::1]/128' ]
-  $mydestination = ['$myhostname, localhost']
+  $mydestination = ['$myhostname', 'localhost']
   $sender_canonical_maps = undef
   $relay_domains = undef
   $virtual_alias_maps = undef
