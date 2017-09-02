@@ -70,7 +70,6 @@ alias_maps = <%= scope['::postfix::alias_maps'] %>
 alias_database = <%= scope['::postfix::alias_database'] %>
 <% end -%>
 
-
 <% if defined?$postfix::sender_canonical_maps -%>
 sender_canonical_maps = <%= scope['::postfix::sender_canonical_maps'] %>
 <% end -%>
@@ -158,37 +157,42 @@ smtpd_tls_eecdh_grade = <%= scope['::postfix::smtpd_tls_eecdh_grade'] %>
 <% end -%>
 
 <% if @smtpd_client_restrictions -%>
-smtpd_client_restrictions=
-<% @smtpd_client_restrictions.each do |rule| -%>
-        <%= rule %>,
+<% if @smtpd_client_restrictions.is_a?(Array) -%>
+smtpd_client_restrictions = <%= @smtpd_client_restrictions.join(',') %>
+<% else %>
+smtpd_client_restrictions = <%= @smtpd_client_restrictions %>
 <% end -%>
 <% end -%>
 
 <% if @smtpd_helo_restrictions -%>
-smtpd_helo_restrictions=
-<% @smtpd_helo_restrictions.each do |rule| -%>
-        <%= rule %>,
+<% if @smtpd_helo_restrictions.is_a?(Array) -%>
+smtpd_helo_restrictions = <%= @smtpd_helo_restrictions.join(',') %>
+<% else %>
+smtpd_helo_restrictions = <%= @smtpd_helo_restrictions %>
 <% end -%>
 <% end -%>
 
 <% if @smtpd_sender_restrictions -%>
-smtpd_sender_restrictions=
-<% @smtpd_sender_restrictions.each do |rule| -%>
-        <%= rule %>,
+<% if @smtpd_sender_restrictions.is_a?(Array) -%>
+smtpd_sender_restrictions = <%= @smtpd_sender_restrictions.join(',') %>
+<% else %>
+smtpd_sender_restrictions = <%= @smtpd_sender_restrictions %>
 <% end -%>
 <% end -%>
 
 <% if @smtpd_recipient_restrictions -%>
-smtpd_recipient_restrictions=
-<% @smtpd_recipient_restrictions.each do |rule| -%>
-        <%= rule %>,
+<% if @smtpd_recipient_restrictions.is_a?(Array) -%>
+smtpd_recipient_restrictions = <%= @smtpd_recipient_restrictions.join(',') %>
+<% else %>
+smtpd_recipient_restrictions = <%= @smtpd_recipient_restrictions %>
 <% end -%>
 <% end -%>
 
 <% if @smtpd_data_restrictions -%>
-smtpd_data_restrictions=
-<% @smtpd_data_restrictions.each do |rule| -%>
-        <%= rule %>,
+<% if @smtpd_data_restrictions.is_a?(Array) -%>
+smtpd_data_restrictions = <%= @smtpd_data_restrictions.join(',') %>
+<% else %>
+smtpd_data_restrictions = <%= @smtpd_data_restrictions %>
 <% end -%>
 <% end -%>
 
