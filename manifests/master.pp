@@ -7,9 +7,8 @@ define postfix::master(String $service = undef,
   Optional[Integer] $maxproc = undef,
   String $command = undef,
   String $flags = undef
-)
-{
-    ensure_resource('concat', "${postfix::config_directory}/master2.cf", { owner => root, group => root, mode => '0644',notify => Service['postfix'] })
+) {
+  ensure_resource('concat', "${postfix::config_directory}/master2.cf", { owner => root, group => root, mode => '0644',notify => Service['postfix'] })
 
   concat::fragment { "postfix:map:master.cf:${service}":
     target  => "${postfix::config_directory}/master.cf",
