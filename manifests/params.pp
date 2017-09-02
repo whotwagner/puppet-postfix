@@ -1,5 +1,5 @@
 class postfix::params {
-  $tplmaincf = 'postfix/templates.main.cf.erb'
+  $tplmaincf = 'postfix/main.cf.erb'
   $tplmastercf = 'postfix/master.cf.erb'
   $myhostname = 'localhost'
   $mynetworks = '127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128'
