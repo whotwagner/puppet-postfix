@@ -18,6 +18,14 @@ myhostname = <%= scope['::postfix::myhostname'] %>
 myorigin = <%= scope['::postfix::myorigin'] %>
 mynetworks = <%= scope['::postfix::mynetworks'] %>
 mydestination = <%= scope['::postfix::mydestination'] %>
+<% if @mydestination -%>
+<% if @mydestination.is_a?(Array) -%>
+mydestination = <%= @mydestination.join(',') %>
+<% else %>
+mydestination = <%= @mydestination %>
+<% end -%>
+<% end -%>
+
 <% if @relay_domains -%>
 relay_domains = <%= scope['::postfix::relay_domains'] %>
 <% end -%>

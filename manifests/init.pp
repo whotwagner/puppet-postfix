@@ -3,7 +3,7 @@ class postfix(
   $tplmastercf = $::postfix::params::tplmastercf,
   $myhostname = $::postfix::params::myhostname,
   $mynetworks = $::postfix::params::mynetworks,
-  $mydestination = $::postfix::params::mydestination,
+  Optional[Variant[String,Array]] $mydestination = $::postfix::params::mydestination,
   $sender_canonical_maps = $::postfix::params::sender_canonical_maps,
   $relay_domains = $::postfix::params::relay_domains,
   $virtual_alias_maps = $::postfix::params::virtual_alias_maps,
