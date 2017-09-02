@@ -16,8 +16,14 @@ readme_directory = <%= scope['::postfix::readme_directory'] %>
 
 myhostname = <%= scope['::postfix::myhostname'] %>
 myorigin = <%= scope['::postfix::myorigin'] %>
-mynetworks = <%= scope['::postfix::mynetworks'] %>
-mydestination = <%= scope['::postfix::mydestination'] %>
+<% if @mynetworks -%>
+<% if @mynetworks.is_a?(Array) -%>
+mynetworks = <%= @mynetworks.join(' ') %>
+<% else %>
+mynetworks = <%= @mynetworks %>
+<% end -%>
+<% end -%>
+
 <% if @mydestination -%>
 <% if @mydestination.is_a?(Array) -%>
 mydestination = <%= @mydestination.join(',') %>
