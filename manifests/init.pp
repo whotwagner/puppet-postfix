@@ -71,7 +71,6 @@ class postfix(
   Optional[Enum['yes','no']] $postscreen_non_smtp_command_enable = $::postfix::params::postscreen_non_smtp_command_enable,
   Optional[Variant[String,Array]] $postscreen_dnsbl_sites = $::postfix::params::postscreen_dnsbl_sites,
   Optional[Integer] $postscreen_dnsbl_threshold = $::postfix::params::postscreen_dnsbl_threshold,
-
   Optional[Integer] $postscreen_dnsbl_whitelist_threshold = $::postfix::params::postscreen_dnsbl_whitelist_threshold,
   Optional[Enum['ignore','enforce','drop']] $postscreen_dnsbl_action = $::postfix::params::postscreen_dnsbl_action,
   Optional[String] $milter_mail_macros = $::postfix::params::milter_mail_macros,
