@@ -197,17 +197,47 @@ smtpd_data_restrictions = <%= @smtpd_data_restrictions %>
 <% end -%>
 
 <% if scope['::postfix::postscreen'] == true -%>
-postscreen_access_list = permit_mynetworks, cidr:/etc/postfix/postscreen_access.cidr
-postscreen_greet_banner =  mail.
-postscreen_greet_wait = 4s
-postscreen_greet_action = enforce
-postscreen_pipelining_enable = yes
-postscreen_pipelining_action = enforce
-postscreen_non_smtp_command_enable = yes
-postscreen_dnsbl_sites = bl.spamcop.net*1 dnsbl.sorbs.net*1 ix.dnsbl.manitu.net*1 rhsbl.sorbs.net*1 dnsbl.inps.de*1 dnsbl-1.uceprotect.net*1 dnswl.inps.de*-2 wl.mailspike.net*-1
-postscreen_dnsbl_threshold = 3
-postscreen_dnsbl_whitelist_threshold = -1
-postscreen_dnsbl_action = enforce
+<% if @postscreen_access_list -%>
+<% if @postscreen_access_list.is_a?(Array) -%>
+postscreen_access_list = <%= @postscreen_access_list.join(',') %>
+<% else %>
+postscreen_access_list = <%= @postscreen_access_list %>
+<% end -%>
+<% end -%>
+<% if @postscreen_greet_banner -%>
+postscreen_greet_banner = <%= scope['::postfix::postscreen_greet_banner'] %>
+<% end -%>
+<% if @postscreen_greet_wait -%>
+postscreen_greet_wait = <%= scope['::postfix::postscreen_greet_wait'] %>
+<% end -%>
+<% if @postscreen_greet_action -%>
+postscreen_greet_action = <%= scope['::postfix::postscreen_greet_action'] %>
+<% end -%>
+<% if @postscreen_pipelining_enable -%>
+postscreen_pipelining_enable = <%= scope['::postfix::postscreen_pipelining_enable'] %>
+<% end -%>
+<% if @postscreen_pipelining_action -%>
+postscreen_pipelining_action = <%= scope['::postfix::postscreen_pipelining_action'] %>
+<% end -%>
+<% if @postscreen_non_smtp_command_enable -%>
+postscreen_non_smtp_command_enable = <%= scope['::postfix::postscreen_non_smtp_command_enable'] %>
+<% end -%>
+<% if @postscreen_dnsbl_sites -%>
+<% if @postscreen_dnsbl_sites.is_a?(Array) -%>
+postscreen_dnsbl_sites = <%= @postscreen_dnsbl_sites.join(',') %>
+<% else %>
+postscreen_dnsbl_sites = <%= @postscreen_dnsbl_sites %>
+<% end -%>
+<% end -%>
+<% if @postscreen_dnsbl_threshold -%>
+postscreen_dnsbl_threshold = <%= scope['::postfix::postscreen_dnsbl_threshold'] %>
+<% end -%>
+<% if @postscreen_dnsbl_whitelist_threshold -%>
+postscreen_dnsbl_whitelist_threshold = <%= scope['::postfix::postscreen_dnsbl_whitelist_threshold'] %>
+<% end -%>
+<% if @postscreen_dnsbl_action -%>
+postscreen_dnsbl_action = <%= scope['::postfix::postscreen_dnsbl_action'] %>
+<% end -%>
 <% end -%>
 
 <% if scope['::postfix::rspamd'] == true -%>

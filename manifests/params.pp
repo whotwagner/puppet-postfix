@@ -59,4 +59,15 @@ class postfix::params {
   $smtpd_helo_required = no
   $disable_vrfy_command = no
   $address_verify_negative_cache = yes
+  $postscreen_access_list = undef
+  $postscreen_greet_banner = undef
+  $postscreen_greet_wait = undef
+  $postscreen_greet_action = undef
+  $postscreen_pipelining_enable = undef
+  $postscreen_pipelining_action = undef
+  $postscreen_non_smtp_command_enable = undef
+  $postscreen_dnsbl_sites = undef
+  $postscreen_dnsbl_threshold = undef
+  $postscreen_dnsbl_whitelist_threshold = undef
+  $postscreen_dnsbl_action = undef
 }

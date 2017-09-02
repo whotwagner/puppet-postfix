@@ -61,7 +61,19 @@ class postfix(
   Enum['yes','no'] $address_verify_negative_cache = $::postfix::params::address_verify_negative_cache,
   Optional[Collection] $lists = undef,
   Optional[Collection] $aliases = undef,
-  Optional[Collection] $maps = undef
+  Optional[Collection] $maps = undef,
+  Optional[Variant[String,Array]] $postscreen_access_list = $::postfix::params::postscreen_access_list,
+  Optional[String] $postscreen_greet_banner = $::postfix::params::postscreen_greet_banner,
+  Optional[String] $postscreen_greet_wait = $::postfix::params::postscreen_greet_wait,
+  Optional[Enum['ignore','enforce','drop']] $postscreen_greet_action = $::postfix::params::postscreen_greet_action,
+  Optional[Enum['yes','no']] $postscreen_pipelining_enable = $$::postfix::params::postscreen_pipelining_enable,
+  Optional[Enum['ignore','enforce','drop']] $postscreen_pipelining_action = $::postfix::params::postscreen_pipelining_action,
+  Optional[Enum['yes','no']] $postscreen_non_smtp_command_enable = $$::postfix::params::postscreen_non_smtp_command_enable,
+  Optional[Variant[String,Array]] $postscreen_dnsbl_sites = $::postfix::params::postscreen_dnsbl_sites,
+  Optional[Integer] $postscreen_dnsbl_threshold = $::postfix::params::postscreen_dnsbl_threshold,
+
+  Optional[Integer] $postscreen_dnsbl_whitelist_threshold = $::postfix::params::postscreen_dnsbl_whitelist_threshold,
+  Optional[Enum['ignore','enforce','drop']] $postscreen_dnsbl_action = $::postfix::params::postscreen_dnsbl_action,
 ) inherits ::postfix::params {
   if $::osfamily == 'Debian' {
     package { 'postfix':
