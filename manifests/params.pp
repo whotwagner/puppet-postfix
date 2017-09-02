@@ -49,6 +49,7 @@ class postfix::params {
   $forcespf = false
   $rspamd = false
   $biff = 'no'
+  $content_filter = undef
   $append_dot_mydomain = 'no'
   $myorigin = '/etc/mailname'
   $mailbox_command = 'procmail -a "$EXTENSION"'

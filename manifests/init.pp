@@ -14,6 +14,7 @@ class postfix(
   $delay_warning_time = $::postfix::params::delay_warning_time,
   $bounce_queue_lifetime = $::postfix::params::bounce_queue_lifetime,
   $maximal_queue_lifetime = $::postfix::params::maximal_queue_lifetime,
+  Optional[Array] $content_filter = $::postfix::params::content_filter,
   Optional[Array] $smtpd_client_restrictions = $::postfix::params::smtpd_client_restrictions,
   Optional[Array] $smtpd_helo_restrictions = $::postfix::params::smtpd_helo_restrictions,
   Optional[Array] $smtpd_sender_restrictions = $::postfix::params::smtpd_sender_restrictions,

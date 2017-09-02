@@ -75,9 +75,8 @@ alias_database = <%= scope['::postfix::alias_database'] %>
 sender_canonical_maps = <%= scope['::postfix::sender_canonical_maps'] %>
 <% end -%>
 
-
-<% if scope['::postfix::amavis'] == true -%>
-content_filter = smtp-amavis:[127.0.0.1]:10024
+<% if @content_filter -%>
+content_filter = <%= scope['::postfix::content_filter'] %>
 <% end -%>
 
 smtpd_helo_required = <%= scope['::postfix::smtpd_helo_required'] %>
