@@ -66,7 +66,7 @@ class postfix(
   Optional[String] $postscreen_greet_banner = $::postfix::params::postscreen_greet_banner,
   Optional[String] $postscreen_greet_wait = $::postfix::params::postscreen_greet_wait,
   Optional[Enum['ignore','enforce','drop']] $postscreen_greet_action = $::postfix::params::postscreen_greet_action,
-  Optional[Enum['yes','no']] $postscreen_pipelining_enable = $$::postfix::params::postscreen_pipelining_enable,
+  Optional[Enum['yes','no']] $postscreen_pipelining_enable = $::postfix::params::postscreen_pipelining_enable,
   Optional[Enum['ignore','enforce','drop']] $postscreen_pipelining_action = $::postfix::params::postscreen_pipelining_action,
   Optional[Enum['yes','no']] $postscreen_non_smtp_command_enable = $$::postfix::params::postscreen_non_smtp_command_enable,
   Optional[Variant[String,Array]] $postscreen_dnsbl_sites = $::postfix::params::postscreen_dnsbl_sites,
