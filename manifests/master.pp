@@ -13,7 +13,7 @@ define postfix::master(String $service = undef,
 
     concat::fragment { "postfix:map:master.cf:${service}":
       target  => "${postfix::config_directory}/master.cf",
-      content => "${service}\t${type}\t<%= private ? private : '-' -%>\t<%= unpriv ? unpriv : '-' -%>\t<%= chroot ? chroot : '-' -%>\t<%= wakeup ? wakeup : '-' -%>\t<%= maxproc ? maxproc : '-' -%>\t${command}\n<%= "   ${flags}\n" if flags -%>,
+      content => "${service}\t${type}\t<%= private ? private : '-' -%>\t<%= unpriv ? unpriv : '-' -%>\t<%= chroot ? chroot : '-' -%>\t<%= wakeup ? wakeup : '-' -%>\t<%= maxproc ? maxproc : '-' -%>\t${command}\n<%= "   ${flags}\n" if flags -%>"
     }
   }
 }
