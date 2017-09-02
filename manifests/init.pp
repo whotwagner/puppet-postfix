@@ -74,6 +74,10 @@ class postfix(
 
   Optional[Integer] $postscreen_dnsbl_whitelist_threshold = $::postfix::params::postscreen_dnsbl_whitelist_threshold,
   Optional[Enum['ignore','enforce','drop']] $postscreen_dnsbl_action = $::postfix::params::postscreen_dnsbl_action,
+  Optional[String] $milter_mail_macros = $::postfix::params::milter_mail_macros,
+  Optional[String] $smtpd_milters = $::postfix::params::smtpd_milters,
+  Optional[Variant[String,Integer]] $milter_protocol = $::postfix::params::milter_protocol,
+  Optional[Enum['accept','reject','tempfail','quarantine']] $milter_default_action = $::postfix::params::milter_default_action 
 ) inherits ::postfix::params {
   if $::osfamily == 'Debian' {
     package { 'postfix':

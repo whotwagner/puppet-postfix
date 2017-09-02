@@ -196,7 +196,6 @@ smtpd_data_restrictions = <%= @smtpd_data_restrictions %>
 <% end -%>
 <% end -%>
 
-<% if scope['::postfix::postscreen'] == true -%>
 <% if @postscreen_access_list -%>
 <% if @postscreen_access_list.is_a?(Array) -%>
 postscreen_access_list = <%= @postscreen_access_list.join(',') %>
@@ -238,13 +237,17 @@ postscreen_dnsbl_whitelist_threshold = <%= scope['::postfix::postscreen_dnsbl_wh
 <% if @postscreen_dnsbl_action -%>
 postscreen_dnsbl_action = <%= scope['::postfix::postscreen_dnsbl_action'] %>
 <% end -%>
+<% if @milter_mail_macros -%>
+milter_mail_macros = <%= scope['::postfix::milter_mail_macros'] %>
 <% end -%>
-
-<% if scope['::postfix::rspamd'] == true -%>
-milter_mail_macros = i {mail_addr} {client_addr} {client_name} {auth_authen}
-smtpd_milters = unix:/run/rmilter/rmilter.sock
-milter_protocol = 6
-milter_default_action = accept
+<% if @smtpd_milters -%>
+smtpd_milters = <%= scope['::postfix::smtpd_milters'] %>
+<% end -%>
+<% if @milter_protocol -%>
+milter_protocol = <%= scope['::postfix::milter_protocol'] %>
+<% end -%>
+<% if @milter_default_action -%>
+milter_default_action = <%= scope['::postfix::milter_default_action'] %>
 <% end -%>
 
 <% if @inet_interfaces -%>

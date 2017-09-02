@@ -70,4 +70,8 @@ class postfix::params {
   $postscreen_dnsbl_threshold = undef
   $postscreen_dnsbl_whitelist_threshold = undef
   $postscreen_dnsbl_action = undef
+  $milter_mail_macros = undef
+  $smtpd_milters = undef
+  $milter_protocol = undef
+  $milter_default_action = undef
 }
