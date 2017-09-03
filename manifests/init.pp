@@ -77,8 +77,8 @@ class postfix(
   Optional[String] $smtpd_milters = $::postfix::params::smtpd_milters,
   Optional[Variant[String,Integer]] $milter_protocol = $::postfix::params::milter_protocol,
   Optional[Enum['accept','reject','tempfail','quarantine']] $milter_default_action = $::postfix::params::milter_default_action,
-  Optional[Hash[String,Struct[{service => String, servicetype => String, priv => Optional[String], unpriv => Optional[String], chroot => Optional[String], wakeup => Optional[Pattern[/^[0-9]+\??$/]], maxproc => Optional[Integer],command => String, flags => Optional[String]}]]] $masters =undef,
-  Optional[Hash[String,Struct[{service => String, servicetype => String, priv => Optional[String], unpriv => Optional[String], chroot => Optional[String], wakeup => Optional[Pattern[/^[0-9]+\??$/]], maxproc => Optional[Integer],command => String, flags => Optional[String]}]]] $defaultmasters = $::postfix::params::defaultmasters
+  Optional[Hash[String,Struct[{service => String, servicetype => String, priv => Optional[String], unpriv => Optional[String], chroot => Optional[String], wakeup => Optional[Pattern[/^[0-9]+\??$/]], maxproc => Optional[Integer],command => String, flags => Optional[String], order => Optional[Variant[String,Integer]]}]]] $masters =undef,
+  Optional[Hash[String,Struct[{service => String, servicetype => String, priv => Optional[String], unpriv => Optional[String], chroot => Optional[String], wakeup => Optional[Pattern[/^[0-9]+\??$/]], maxproc => Optional[Integer],command => String, flags => Optional[String],order => Optional[Variant[String,Integer]]}]]] $defaultmasters = $::postfix::params::defaultmasters
 ) inherits ::postfix::params {
   if $::osfamily == 'Debian' {
     package { 'postfix':
@@ -155,18 +155,21 @@ class postfix(
 
 #  if $masters {
    $merged_masters.each|String $n, Hash $m|{
-    
-     ensure_resource('postfix::master',"master:$m[service]:$m[type]",{ 
-       service => $m[service],
-       type => $m[servicetype],
-       priv => $m[priv],
-       unpriv => $m[unpriv],
-       chroot => $m[chroot],
-       wakeup => $m[wakeup],
-       maxproc => $m[maxproc],
-       command => $m[command],
-       flags => $m[flags]
-   })
+ 
+Resource['postfix::master'] {
+  $n: * => $m;
+}   
+#     ensure_resource('postfix::master',"master:$m[service]:$m[type]",{ 
+#       service => $m[service],
+#       servicetype => $m[servicetype],
+#       priv => $m[priv],
+#       unpriv => $m[unpriv],
+#       chroot => $m[chroot],
+#       wakeup => $m[wakeup],
+#       maxproc => $m[maxproc],
+#       command => $m[command],
+#       flags => $m[flags]
+#   })
    }
 #  }
 
