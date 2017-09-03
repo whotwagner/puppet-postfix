@@ -14,7 +14,7 @@ class postfix(
   $delay_warning_time = $::postfix::params::delay_warning_time,
   $bounce_queue_lifetime = $::postfix::params::bounce_queue_lifetime,
   $maximal_queue_lifetime = $::postfix::params::maximal_queue_lifetime,
-  Optional[Array] $content_filter = $::postfix::params::content_filter,
+  Optional[String] $content_filter = $::postfix::params::content_filter,
   Optional[Array] $smtpd_client_restrictions = $::postfix::params::smtpd_client_restrictions,
   Optional[Array] $smtpd_helo_restrictions = $::postfix::params::smtpd_helo_restrictions,
   Optional[Array] $smtpd_sender_restrictions = $::postfix::params::smtpd_sender_restrictions,
@@ -92,20 +92,6 @@ class postfix(
       require => Package['postfix'],
       content => $myhostname,
       notify  => Service['postfix']
-    }
-  }
-
-  if $postscreen == true {
-    ensure_resource('exec', "postmap ${postfix::config_directory}/postscreen_access.cidr")
-    file { "${config_directory}/postscreen_access.cidr":
-      ensure  => present,
-      force   => true,
-      owner   => root,
-      group   => root,
-      mode    => '0644',
-      source  => 'puppet:///modules/postfix/postscreen_access.cidr',
-      require => Package['postfix'],
-      notify  => [ Exec["postmap ${postfix::config_directory}/postscreen_access.cidr"], Service['postfix']]
     }
   }
 
